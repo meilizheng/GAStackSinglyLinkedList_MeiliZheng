@@ -53,44 +53,54 @@ namespace GAStackSinglyLinkedList_MeiliZheng
         //Pop Method
         public T Pop()
         {
-            if (top == null)
+            if (top == null)// If stack is empty
             {
-                throw new InvalidOperationException("Stack is empty.");
+                throw new InvalidOperationException("Stack is empty.");// Throw an exception
             }
-            T value = top.value;
-            top = top.Next;
-            count--;
-            return value;
+            T value = top.value;// Get the value of the top node
+            top = top.Next;// Update top to point to the next node
+            count--;// Decrement the count of elements
+            return value;// Return the value of the removed node
         }
 
         //Peek Method
         public T Peek()
         {
-            if(top == null)
+            if(top == null)// If stack is empty
             {
-                throw new InvalidOperationException("Stack is empty.");
+                throw new InvalidOperationException("Stack is empty.");// Throw an exception
             }
-            Console.WriteLine(top.value);
-            return top.value;
+            Console.WriteLine(top.value);// Print the value of the top node
+            return top.value;// Return the value of the top node
         }
 
         //Clear Method
         public void Clear()
         {
-            top = null;
-            count = 0;
+            //Run until the stack is empty
+            while(top != null)
+            {
+                //Store the reference to the next node
+                StackNode<T> nextNode = top.Next;
+                //Remove the top node from the stack
+                top = null;
+                //Move to the next node
+                top = nextNode;
+                //Decrement the count
+                count--;
+            }
         }
 
         //Print result method
         public void printResult()
         {
-            if (top != null)
+            if (top != null)// If stack is not empty
             {
-                StackNode<T> current = top;
-                while (current != null)
+                StackNode<T> current = top;// Start from the top node
+                while (current != null)// Iterate until reaching the end of the stack
                 {
-                    Console.WriteLine(current.value);
-                    current = current.Next;
+                    Console.WriteLine(current.value);// Print the value of the current node
+                    current = current.Next;// Move to the next node
                 }
             }
         }
